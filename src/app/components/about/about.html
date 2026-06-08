@@ -1,0 +1,107 @@
+<section id="sobre" class="min-h-screen mt-270 px-6 py-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-12">
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-400">
+        Sobre mim
+      </p>
+
+      <h2 class="mt-3 text-4xl font-bold text-white">
+        Quem é {{ profile.name }}?
+      </h2>
+    </div>
+
+    <div class="grid items-start gap-8 h-max lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="space-y-8 h-full">
+        <div
+          class="h-[60%] relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 bg-slate-900 border border-white/10">
+          <img [src]="profile.professionalPhoto" [alt]="profile.name" class="h-full w-full object-cover" />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+
+          <div class="absolute bottom-0 left-0 w-full p-6">
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
+              Desenvolvedor
+            </p>
+
+            <h3 class="mt-2 text-3xl font-bold text-white">
+              {{ profile.name }}
+            </h3>
+
+            <p class="mt-2 text-slate-300">
+              {{ profile.role }}
+            </p>
+          </div>
+        </div>
+
+        <div class="h-[40%] rounded-3xl border border-white/10 bg-white/3 p-8">
+          <h3 class="text-2xl font-bold text-white">
+            Objetivo
+          </h3>
+
+          <p class="mt-4 leading-8 text-slate-400">
+            Desenvolver sistemas modernos, aprender novas tecnologias e
+            construir projetos reais que ajudem a resolver problemas do dia a
+            dia com clareza, qualidade e profissionalismo.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-8 h-full">
+        <div class="h-[45%] rounded-3xl border border-white/10 bg-white/3 p-8">
+          <h3 class="text-2xl font-bold text-white">
+            Perfil profissional
+          </h3>
+
+          <p class="mt-5 text-lg leading-9 text-slate-300">
+            {{ profile.about }}
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-400">
+            Busco evoluir na criação de aplicações web com boa estrutura,
+            organização visual, responsividade e foco em soluções úteis para
+            pessoas e empresas.
+          </p>
+        </div>
+
+        <div class="h-[55%] rounded-3xl border border-blue-400/20 bg-blue-500/10 p-8 shadow-xl shadow-blue-500/10">
+          <div class="mb-5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-black">
+                <img [src]="profile.logoVellarum" [alt]="profile.company.name" class="h-full w-full object-cover" />
+              </div>
+
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+                  {{ profile.company.title }}
+                </p>
+
+                <h3 class="text-2xl font-bold text-white">
+                  {{ profile.company.name }}
+                </h3>
+              </div>
+            </div>
+
+            <div>
+              <a href="https://vellarum.com.br" target="_blank" rel="noopener noreferrer"
+                class="ml-auto rounded-lg bg-blue-400/20 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400/30 transition">
+                Visitar site
+            </a>
+            </div>
+          </div>
+
+          <p class="leading-8 text-slate-300">
+            {{ profile.company.description }}
+          </p>
+
+          <div class="mt-6 grid gap-3 sm:grid-cols-2">
+            @for (item of profile.company.focus; track item) {
+            <div class="rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-slate-300">
+              {{ item }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
