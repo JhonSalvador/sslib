@@ -5,10 +5,52 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #020617;
+}
+
+/*========= scroll ==========*/
+
+html::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 110, 255);
+  border: 1px solid rgb(0, 0, 0);
+}
+
+html::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  transition: 0.2s linear all;
 }
 
 body {
   margin: 0;
+  background-color: #020617;
+  color: #ffffff;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+img,
+svg,
+video {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 @media (min-width: 768px) {

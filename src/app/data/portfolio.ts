@@ -146,8 +146,8 @@ export const STUDIES: Experience[] = [
 ];
 
 export const CONTACT: Contact = {
-  email: 'JSContato@gmail.com',
+  email: 'voltyz99@gmail.com',
   github: 'https://github.com/JhonSalvador',
   linkedin: 'https://www.linkedin.com/in/jo%C3%A3o-victor-salvador-201bb3227/',
-  instagram: 'https://www.instagram.com/joaovsalvador/',
+  instagram: 'https://www.instagram.com/joaov.salvador/',
 };

@@ -16,7 +16,7 @@
     opacity 200ms ease,
     background-color 200ms ease,
     border-color 200ms ease,
-    transform 40ms linear;
+    transform 0ms linear;
 }
 
 .custom-cursor-dot {

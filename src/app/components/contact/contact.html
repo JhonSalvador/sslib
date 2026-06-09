@@ -1,42 +1,111 @@
-<section id="contato" class="min-h-max px-6 py-24">
-  <div class="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center md:p-12">
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-400">
-      Contato
-    </p>
+<section id="contato" class="px-6 py-24">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-12 text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-400">
+        Contato
+      </p>
 
-    <h2 class="mt-3 text-4xl font-bold text-white">
-      Vamos conversar?
-    </h2>
+      <h2 class="mt-3 text-4xl font-bold text-white">
+        Vamos conversar?
+      </h2>
 
-    <p class="mx-auto mt-5 max-w-2xl leading-8 text-slate-400">
-      Entre em contato para conhecer meus projetos, acompanhar minha evolução
-      ou conversar sobre desenvolvimento web.
-    </p>
+      <p class="mx-auto mt-5 max-w-2xl leading-8 text-slate-400">
+        Envie uma mensagem diretamente pelo formulário ou acesse meus links profissionais.
+      </p>
+    </div>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a [href]="'mailto:' + contact.email"
-        class="flex flex-row items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-red-600 hover:text-red-400  ">
-        <i class="fi fi-rr-envelope leading-0"></i>
-        <span class="">E-mail</span>
-      </a>
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <form class="rounded-3xl border border-white/10 bg-white/[0.03] p-8" (submit)="sendContact($event)">
+        <div class="grid gap-5">
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-300">
+              Nome
+            </label>
 
-      <a [href]="contact.github" target="_blank" rel="noopener noreferrer"
-        class="flex flex-row items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-gray-600 hover:text-gray-400">
-        <i class="fi fi-brands-github leading-0"></i>
-        <span class="">GitHub</span>
-      </a>
+            <input type="text" name="name" [(ngModel)]="form.name"
+              class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400"
+              placeholder="Seu nome" />
+          </div>
 
-      <a [href]="contact.linkedin" target="_blank" rel="noopener noreferrer"
-        class="flex flex-row items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-600 hover:text-blue-400">
-        <i class="fi fi-brands-linkedin leading-0"></i>
-        <span class="">LinkedIn</span>
-      </a>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-300">
+              E-mail
+            </label>
 
-      <a [href]="contact.instagram" target="_blank" rel="noopener noreferrer"
-        class="flex flex-row items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-pink-600 hover:text-pink-400">
-        <i class="fi fi-brands-instagram leading-0"></i>
-        <span class="">Instagram</span>
-      </a>
+            <input type="email" name="email" [(ngModel)]="form.email"
+              class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400"
+              placeholder="seuemail@exemplo.com" />
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-300">
+              Mensagem
+            </label>
+
+            <textarea name="message" [(ngModel)]="form.message" rows="6"
+              class="w-full resize-none rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400"
+              placeholder="Escreva sua mensagem"></textarea>
+          </div>
+        </div>
+
+        @if (errorMessage()) {
+        <p class="mt-5 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          {{ errorMessage() }}
+        </p>
+        }
+
+        @if (successMessage()) {
+        <p class="mt-5 rounded-xl bg-green-500/10 px-4 py-3 text-sm text-green-300">
+          {{ successMessage() }}
+        </p>
+        }
+
+        <button type="submit"
+          class="mt-6 w-full rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+          [disabled]="isSending()">
+          @if (isSending()) {
+          Enviando...
+          } @else {
+          Enviar mensagem
+          }
+        </button>
+      </form>
+
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <h3 class="text-2xl font-bold text-white">
+          Links rápidos
+        </h3>
+
+        <p class="mt-4 leading-8 text-slate-400">
+          Use os links abaixo para acessar meus canais profissionais ou enviar um e-mail direto.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-4">
+          <a [href]="'mailto:' + contact.email"
+            class="flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-red-600 hover:text-red-400">
+            <i class="fi fi-rr-envelope leading-0"></i>
+            <span>E-mail</span>
+          </a>
+
+          <a [href]="contact.github" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-gray-600 hover:text-gray-400">
+            <i class="fi fi-brands-github leading-0"></i>
+            <span>GitHub</span>
+          </a>
+
+          <a [href]="contact.linkedin" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-600 hover:text-blue-400">
+            <i class="fi fi-brands-linkedin leading-0"></i>
+            <span>LinkedIn</span>
+          </a>
+
+          <a [href]="contact.instagram" target="_blank" rel="noopener noreferrer"
+            class="flex flex-row items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-pink-600 hover:text-pink-400">
+            <i class="fi fi-brands-instagram leading-0"></i>
+            <span class="">Instagram</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
