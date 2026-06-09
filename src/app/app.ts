@@ -9,6 +9,7 @@ import { Projects } from './components/projects/projects';
 import { Experience } from './components/experience/experience';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
+import { CustomCursor } from './components/custom-cursor/custom-cursor';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { Footer } from './components/footer/footer';
     Experience,
     Contact,
     Footer,
+    CustomCursor,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

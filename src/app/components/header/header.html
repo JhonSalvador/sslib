@@ -1,11 +1,18 @@
+@if (showContentLimit) {
+<div
+  class="pointer-events-none fixed flex flex-col items-center justify-end left-0 top-0 h-30 z-40 w-full bg-blue-950 transition-opacity duration-300">
+  <div class="h-px w-7xl bg-white shadow-[0_0_20px_rgba(96,165,250,0.45)]"></div>
+</div>
+}
+
 <header class="fixed left-0 top-0 z-50 w-full border-b transition-all duration-300"
   [style.background-color]="isScrolled ? 'rgba(2, 6, 23, 0.92)' : 'transparent'"
   [style.border-bottom-color]="isScrolled ? 'rgba(255, 255, 255, 0.10)' : 'transparent'"
-  [style.backdrop-filter]="isScrolled ? 'blur(16px)' : 'none'"
+  [style.backdrop-filter]="isScrolled ? 'blur(16px)' : 'blur(8px)'"
   [style.box-shadow]="isScrolled ? '0 10px 30px rgba(15, 23, 42, 0.35)' : 'none'">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
     <button type="button" class="flex items-center gap-3" (click)="scrollToTop()" aria-label="Voltar para o topo">
-      <img [src]="profile.logo" [alt]="profile.initials" class="h-11 w-11 rounded-xl object-cover cursor-pointer" />
+      <img [src]="profile.logo" [alt]="profile.initials" class="h-11 w-11 rounded-xl object-cover" />
     </button>
 
     <nav class="hidden items-center gap-8 text-sm text-slate-200 md:flex">

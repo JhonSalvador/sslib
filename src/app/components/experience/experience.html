@@ -16,16 +16,9 @@
           Experiência profissional
         </h3>
 
-        <article
-          *ngFor="let job of jobs"
-          class="mb-6 overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
-        >
-          <img
-            *ngIf="job.image"
-            [src]="job.image"
-            [alt]="job.place"
-            class="h-56 w-full object-cover"
-          />
+        <article data-cursor-hover *ngFor="let job of jobs"
+          class="mb-6 overflow-hidden rounded-3xl border border-white/10 bg-slate-950">
+          <img *ngIf="job.image" [src]="job.image" [alt]="job.place" class="h-56 w-full object-cover" />
 
           <div class="p-6">
             <h4 class="text-xl font-bold text-white">
@@ -52,16 +45,9 @@
           Formação e estudos
         </h3>
 
-        <article
-          *ngFor="let study of studies"
-          class="mb-6 overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
-        >
-          <img
-            *ngIf="study.image"
-            [src]="study.image"
-            [alt]="study.place"
-            class="h-56 w-full object-cover"
-          />
+        <article data-cursor-hover *ngFor="let study of studies"
+          class="mb-6 overflow-hidden rounded-3xl border border-white/10 bg-slate-950">
+          <img *ngIf="study.image" [src]="study.image" [alt]="study.place" class="h-56 w-full object-cover" />
 
           <div class="p-6">
             <h4 class="text-xl font-bold text-white">

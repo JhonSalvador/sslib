@@ -25,4 +25,5 @@ export type Contact = {
   email: string;
   github: string;
   linkedin: string;
+  instagram: string;
 };

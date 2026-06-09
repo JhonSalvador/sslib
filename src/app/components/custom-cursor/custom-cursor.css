@@ -1,0 +1,71 @@
+:host {
+  pointer-events: none;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    width 200ms ease,
+    height 200ms ease,
+    opacity 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 40ms linear;
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  border-radius: 999px;
+  background-color: #0078FA;
+  box-shadow: 0 0 18px rgba(146, 195, 255, 0.8);
+}
+
+.custom-cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
+  border-radius: 999px;
+  border: 2px solid rgba(147, 197, 253, 0.7);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+}
+
+.custom-cursor-dot.cursor-visible,
+.custom-cursor-ring.cursor-visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot.cursor-hover {
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.custom-cursor-ring.cursor-hover {
+  width: 58px;
+  height: 58px;
+  margin-left: -29px;
+  margin-top: -29px;
+  border-color: rgba(96, 165, 250, 0.95);
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+.custom-cursor-dot.cursor-clicking {
+  transform: scale(0.75);
+}
+
+.custom-cursor-ring.cursor-clicking {
+  border-color: rgba(255, 255, 255, 0.95);
+}

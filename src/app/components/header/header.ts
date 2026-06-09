@@ -15,6 +15,7 @@ type MenuItem = {
 export class Header {
   profile = PROFILE;
   isScrolled = false;
+  showContentLimit = false;
 
   menuItems: MenuItem[] = [
     {
@@ -24,10 +25,6 @@ export class Header {
     {
       label: 'Sobre',
       target: 'sobre',
-    },
-    {
-      label: 'Vellarum',
-      target: 'vellarum',
     },
     {
       label: 'Tecnologias',
@@ -50,6 +47,17 @@ export class Header {
   @HostListener('window:scroll')
   onWindowScroll(): void {
     this.isScrolled = window.scrollY > 980;
+
+    const hero = document.getElementById('home');
+
+    if (!hero) {
+      this.showContentLimit = false;
+      return;
+    }
+
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
+
+    this.showContentLimit = window.scrollY > heroBottom + 100;
   }
 
   scrollToSection(sectionId: string): void {
@@ -64,7 +72,7 @@ export class Header {
       return;
     }
 
-    const headerOffset = 90;
+    const headerOffset = 110;
     const sectionPosition = section.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = sectionPosition - headerOffset;
 

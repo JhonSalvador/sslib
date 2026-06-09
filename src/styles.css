@@ -1,3 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css');
+@import url("https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css");
 @import 'tailwindcss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  video {
+    cursor: none;
+  }
+}

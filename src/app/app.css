@@ -1,13 +1,2 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-}
-
-section[id] {
-  scroll-margin-top: 90px;
-}

@@ -8,7 +8,6 @@ import { PROJECTS } from '../../data/portfolio';
   imports: [CommonModule],
   templateUrl: './projects.html',
 })
-
 export class Projects {
   projects = PROJECTS;
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { SKILLS } from '../../data/portfolio';
+import { WEB_DEVELOPMENT_SKILLS } from '../../data/portfolio';
+import { INFRASTRUCTURE_SKILLS } from '../../data/portfolio';
 
 @Component({
   selector: 'app-skills',
@@ -9,5 +10,6 @@ import { SKILLS } from '../../data/portfolio';
   templateUrl: './skills.html',
 })
 export class Skills {
-  skills = SKILLS;
+  webSkills = WEB_DEVELOPMENT_SKILLS;
+  infraSkills = INFRASTRUCTURE_SKILLS;
 }
