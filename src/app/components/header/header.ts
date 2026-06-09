@@ -1,4 +1,12 @@
-import { Component, HostListener } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { PROFILE } from '../../data/portfolio';
 
 type MenuItem = {
@@ -12,10 +20,14 @@ type MenuItem = {
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {
+export class Header implements OnDestroy {
   profile = PROFILE;
-  isScrolled = false;
-  showContentLimit = false;
+
+  isScrolled = signal(false);
+  showContentLimit = signal(false);
+  isMenuOpen = signal(false);
+
+  private isBrowser = false;
 
   menuItems: MenuItem[] = [
     {
@@ -44,23 +56,58 @@ export class Header {
     },
   ];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  ngOnDestroy(): void {
+    this.unlockBodyScroll();
+  }
+
   @HostListener('window:scroll')
   onWindowScroll(): void {
-    this.isScrolled = window.scrollY > 980;
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.isScrolled.set(window.scrollY > 980);
 
     const hero = document.getElementById('home');
 
     if (!hero) {
-      this.showContentLimit = false;
+      this.showContentLimit.set(false);
       return;
     }
 
     const heroBottom = hero.offsetTop + hero.offsetHeight;
+    this.showContentLimit.set(window.scrollY > heroBottom + 100);
+  }
 
-    this.showContentLimit = window.scrollY > heroBottom + 100;
+  toggleMenu(): void {
+    const nextState = !this.isMenuOpen();
+
+    this.isMenuOpen.set(nextState);
+
+    if (nextState) {
+      this.lockBodyScroll();
+      return;
+    }
+
+    this.unlockBodyScroll();
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen.set(false);
+    this.unlockBodyScroll();
   }
 
   scrollToSection(sectionId: string): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.closeMenu();
+
     if (sectionId === 'home') {
       this.scrollToTop();
       return;
@@ -83,9 +130,31 @@ export class Header {
   }
 
   scrollToTop(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.closeMenu();
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
+  }
+
+  private lockBodyScroll(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
+  }
+
+  private unlockBodyScroll(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    document.body.style.overflow = '';
   }
 }
