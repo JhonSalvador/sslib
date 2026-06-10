@@ -119,7 +119,7 @@ export class Header implements OnDestroy {
       return;
     }
 
-    const headerOffset = 110;
+    const headerOffset = 100;
     const sectionPosition = section.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = sectionPosition - headerOffset;
 

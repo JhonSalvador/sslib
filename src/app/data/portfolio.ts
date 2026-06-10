@@ -96,7 +96,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'Vellarum',
-    description: 'Landing page para apresentar a empresa e seus serviços.',
+    description: 'Site da empresa e seus serviços.',
     techs: ['Nuxt.js', 'Tailwind CSS', 'JavaScript'],
     image: '/projects/vellarum.png',
     video: '',
