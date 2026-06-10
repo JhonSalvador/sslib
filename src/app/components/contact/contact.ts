@@ -6,13 +6,14 @@ type ContactForm = {
   name: string;
   email: string;
   message: string;
+  botField: string;
 };
 
 @Component({
   selector: 'app-contact',
   imports: [FormsModule],
-  standalone: true,
   templateUrl: './contact.html',
+  styleUrl: './contact.css',
 })
 export class Contact {
   contact = CONTACT;
@@ -21,6 +22,7 @@ export class Contact {
     name: '',
     email: '',
     message: '',
+    botField: '',
   };
 
   isSending = signal(false);
@@ -45,34 +47,37 @@ export class Contact {
     try {
       this.isSending.set(true);
 
-      const response = await fetch('/.netlify/functions/contact', {
+      const formData = new URLSearchParams();
+
+      formData.append('form-name', 'contact');
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
+      formData.append('bot-field', this.form.botField);
+
+      const response = await fetch('/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-        }),
+        body: formData.toString(),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        this.errorMessage.set(data.message || 'Não foi possível enviar a mensagem.');
+        this.errorMessage.set('Não foi possível enviar a mensagem.');
         return;
       }
 
-      this.successMessage.set(data.message || 'Mensagem enviada com sucesso.');
+      this.successMessage.set('Mensagem enviada com sucesso.');
 
       this.form = {
         name: '',
         email: '',
         message: '',
+        botField: '',
       };
     } catch {
-      this.errorMessage.set('Erro ao conectar com o servidor.');
+      this.errorMessage.set('Erro ao enviar mensagem.');
     } finally {
       this.isSending.set(false);
     }

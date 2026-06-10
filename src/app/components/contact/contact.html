@@ -15,7 +15,17 @@
     </div>
 
     <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <form class="rounded-3xl border border-white/10 bg-white/[0.03] p-8" (submit)="sendContact($event)">
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"
+        class="rounded-3xl border border-white/10 bg-white/[0.03] p-8" (submit)="sendContact($event)">
+        <input type="hidden" name="form-name" value="contact" />
+
+        <p class="hidden">
+          <label>
+            Não preencher:
+            <input name="bot-field" [(ngModel)]="form.botField" />
+          </label>
+        </p>
+
         <div class="grid gap-5">
           <div>
             <label class="mb-2 block text-sm font-semibold text-slate-300">
